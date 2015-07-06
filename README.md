@@ -1,4 +1,4 @@
-# buaya
+# Puppet modules for buaya.klas.or.id
 
 #### Table of Contents
 

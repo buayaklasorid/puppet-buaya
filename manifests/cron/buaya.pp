@@ -1,11 +1,12 @@
 class buaya::cron::sedot {
 
-#  cron { 'make-report':
-#   command => '$SEDOT_BASE/bin/make-report > /dev/null 2>&1',
-#   user => 'ftpmaster',
-#   hour => 'absent',
-#   minute => '*/15'
-# }
+  cron { 'make-report':
+   command => '$SEDOT_BASE/bin/make-report > /dev/null 2>&1',
+   environment => 'SEDOT_BASE=/home/ftpmaster/status',
+   user => 'ftpmaster',
+   hour => 'absent',
+   minute => '*/15'
+ }
   cron { 'collect mirror size':
    command => '$SEDOT_BASE/bin/collect-mirror-size > /dev/null 2>&1',
    environment => 'SEDOT_BASE=/home/ftpmaster/status',
@@ -13,12 +14,12 @@ class buaya::cron::sedot {
    hour => '3',
    minute => '0'
  }
-#  cron { 'collect disk usage':
-#   command => '$SEDOT_BASE/bin/collect-du > /dev/null 2>&1',
-#   user => 'ftpmaster',
-#   hour => 'absent',
-#   minute => '*/15'
-# }
+  cron { 'collect disk usage':
+   command => '$SEDOT_BASE/bin/collect-du > /dev/null 2>&1',
+   user => 'ftpmaster',
+   hour => 'absent',
+   minute => '*/15'
+ }
   cron { 'plot mirror size':
    command => '$SEDOT_BASE/bin/plot-mirror-size > /dev/null 2>&1',
    environment => 'SEDOT_BASE=/home/ftpmaster/status',
@@ -31,7 +32,8 @@ class buaya::cron::sedot {
    environment => 'SEDOT_BASE=/home/ftpmaster/status',
    user => 'ftpmaster',
    hour => 'absent',
-   minute => '*/15'
+   minute => '*/15',
+   ensure => absent,
  }
   cron { 'make json':
    command => '$SEDOT_BASE/bin/make-json > /dev/null 2>&1',
@@ -39,6 +41,7 @@ class buaya::cron::sedot {
    user => 'ftpmaster',
    hour => 'absent',
    minute => '*/15'
+   ensure => absent,
  }
 
   cron { 'make centos iso':
