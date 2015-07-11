@@ -1,4 +1,4 @@
-class buaya::cron::buaya {
+class buaya::cron::sedot {
 
   cron { 'make-report':
    command => "$SEDOT_BASE/bin/make-report > /dev/null 2>&1",
