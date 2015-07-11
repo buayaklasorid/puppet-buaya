@@ -59,6 +59,60 @@ class buaya::cron::buaya {
    special => 'reboot',
  }
 
+ cron { 'pkg-debian':
+  command => '$HOME/bin/sedot debian > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '0',
+  hour => [1, 4, 7, 10, 13, 17, 20, 23]
+ }
+
+ cron { 'pkg-ubuntu':
+  command => '$HOME/bin/sedot ubuntu > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '30',
+  hour => [2, 5, 8, 11, 14, 17, 20, 23]
+ }
+
+ cron { 'pkg apt-puppetlabs':
+  command => '$HOME/bin/sedot apt-puppetlabs > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '0',
+  hour => '21',
+ }
+
+ cron { 'pkg yum-puppetlabs':
+  command => '$HOME/bin/sedot yum-puppetlabs > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '0',
+  hour => '5',
+ }
+
+ cron { 'pkg ubuntu-cdimage':
+  command => '$HOME/bin/sedot ubuntu-cdimage > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '0',
+  hour => '1',
+ }
+
+ cron { 'pkg ubuntu-releases':
+  command => '$HOME/bin/sedot ubuntu-cd > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '0',
+  hour => '19',
+ }
+
+ cron { 'pkg-centos':
+  command => '$HOME/bin/sedot centos > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '45',
+  hour => '*/6',
+ }
+ cron { 'pkg-epel':
+  command => '$HOME/bin/sedot epel > /dev/null 2>&1',
+  user => 'ftpmaster',
+  minute => '5',
+  hour => '*/6',
+ }
 
 } # end of cronjob
 
