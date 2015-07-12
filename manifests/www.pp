@@ -1,10 +1,5 @@
 class buaya::www {
 
- class { 'apache':
-  service_enable => false,
-  package_ensure => absent,
-
- }
 
  class { 'nginx':
   confd_purge => true,
@@ -76,7 +71,8 @@ class buaya::www {
 
  nginx::resource::location { 'sedot-status-log':
   ensure => 'present',
-  location => '~ ^/status/log(/.*)$ $1 break',
+  location => '~ ^/status/log/.*gz$',
+  rewrite_rules => [ '^/status/log(/.*)$ $1 break', ],
   www_root => '/home/ftpmaster/log/sync/',
   raw_append => 'types { text/plain gz; }',
   vhost => 'buaya.klas.or.id',
